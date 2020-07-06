@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,SubmitField,BooleanField
-from wtforms.validators import DataRequired,Email,EqualTo,ValidationError
+from wtforms.validators import DataRequired,Email,EqualTo,ValidationError,URL
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -22,3 +22,8 @@ class RegisterForm(FlaskForm):
         if u is not None:
            raise ValidationError("Duplicate email")
     
+class AddPearl(FlaskForm):
+    title = StringField('title',validators=[DataRequired()])
+    video = StringField('video',validators=[DataRequired(),URL()])
+    language = StringField('language')
+    submit = SubmitField("Add It!")

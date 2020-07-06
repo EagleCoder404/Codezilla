@@ -1,6 +1,6 @@
 from app import app,db
 from flask import render_template,url_for,redirect,flash,request
-from app.forms import LoginForm,RegisterForm
+from app.forms import LoginForm,RegisterForm,AddPearl
 from app.models import User,Pearl
 from flask_login import logout_user,login_user,login_required,current_user
 
@@ -52,3 +52,15 @@ def register():
         return redirect(url_for('login'))
     
     return render_template("register.html",register=register_form)
+
+@app.route("/add",methods=['GET','POST'])
+@login_required
+def add():
+    form = AddPearl()
+    if form.validate_on_submit():
+        pearl = Pearl(title=form.title.data,video=form.video.data,language=form.language.data)
+        db.session.add(pearl)
+        db.session.commit()
+        flash("{} added".format(form.title.data))
+        redirect(url_for('add'))
+    return  render_template("add.html",form=form)

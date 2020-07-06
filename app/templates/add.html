@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static',filename='auth.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+{% endblock head %}
+{% block body %}
+<div class='container p-0 p-sm-1'>
+    <div class=' container auth-box bg-white rounded-sm p-0 p-sm-5'>
+    
+        <div class='container-fluid p-0 banner'>
+            <p class='display-3 text-dark p-0' style="font-family: raleway;" >Add Video</p>
+        </div>
+    
+        <form action="/add" class='form-group p-2' method='post' autocomplete="off" >
+            {{form.hidden_tag()}}
+    
+                <div class='row mb-3'>
+                    <div class='col'>
+                        {{form.title.label}}
+                        {{form.title(max=200,class='form-control form-control-lg pl-3 pr-3',placeholder='title')}}
+                        {% for e in form.title.errors %}
+                            <span style="color:red">{{e}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class='row mb-3'>
+                    <div class='col'>
+                        {{form.video.label}}
+                        {{form.video(max=200,class='form-control form-control-lg pl-3 pr-3',placeholder='video')}}
+                        {% for e in form.video.errors %}
+                            <span style="color:red">{{e}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class='row mb-3'>
+                    <div class='col'>
+                        {{form.language.label}}
+                        {{form.language(max=200,class='form-control form-control-lg pl-3 pr-3',placeholder='language')}}
+                        {% for e in form.language.errors %}
+                            <span style="color:red">{{e}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {{form.submit(class='btn btn-outline-success')}}
+        </form>
+    </div>
+    </div>
+{% endblock body %}
