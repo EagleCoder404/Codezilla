@@ -1,0 +1,8 @@
+
+body
+{
+    background: url('forest_bg.jpg') no-repeat center center fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    
+}

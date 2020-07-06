@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{url_for('static',filename='auth.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+{% endblock head %}
+{% block body %}
+<div class='container p-0 p-sm-1'>
+<div class='container auth-box bg-white p-sm-5 p-0 rounded-sm '>
+
+    <div class='container-fluid p-0 banner'>
+        <p class='display-3 text-dark p-0' style="font-family: raleway;" >Login</p>
+    </div>
+
+    <form action="/login" method='post' class='form-group p-2' autocomplete="off">
+        {{ login.hidden_tag() }}
+        <div class="container">
+            <div class='row mb-3'>
+                <label >Email</label>
+                {{login.email(max=200,class='form-control form-control-lg pl-3 pr-3',placeholder='email')}}
+                {% for e in login.email.errors %}
+                    <span style="color:red">{{e}}</span>
+                {% endfor %}
+            </div>
+
+            <div class='row mb-3'>
+                <label>Password</label>
+                {{login.password(max=32,class='form-control form-control-lg pl-3 pr-3',placeholder='password')}}
+                {% for e in login.password.errors %}
+                <span style="color:red">{{e}}</span>
+                {% endfor %}
+            </div>
+    
+            <div class='row mb-3'>
+                <div class='col-sm-6'>
+                    {{login.remember.label}}
+                    {{login.remember()}}
+                </div>
+                <div class='col-sm-6'>
+                    {{login.submit(class='btn btn-outline-success float-sm-right')}}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<script>
+    $(".1").addClass('active')
+</script>
+{% endblock body %}

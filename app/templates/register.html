@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{url_for('static',filename='auth.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+
+{% endblock head %}
+{% block body %}
+<div class='container p-0 p-sm-1'>
+<div class=' container auth-box bg-white rounded-sm p-0 p-sm-5'>
+
+    <div class='container-fluid p-0 banner'>
+        <p class='display-3 text-dark p-0' style="font-family: raleway;" >Create Account</p>
+    </div>
+
+    <form action="/register" class='form-group p-2' method='post' autocomplete="off" >
+        {{register.hidden_tag()}}
+
+            <div class='row mb-3'>
+                <div class='col'>
+                    {{register.email.label}}
+                    {{register.email(max=200,class='form-control form-control-lg pl-3 pr-3',placeholder='Email')}}
+                    {% for e in register.email.errors %}
+                        <span style="color:red">{{e}}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class='row mb-3'>
+                <div class='col-sm-6'>
+                    {{register.first_name.label}}
+                    {{register.first_name(max=50,class='form-control form-control-lg pl-3 pr-3',placeholder='First Name')}}
+                    {% for e in register.first_name.errors %}
+                        <span style="color:red">{{e}}</span>
+                    {% endfor %}
+                </div>
+                <div class='col-sm-6'>
+                    {{register.last_name.label}}
+                    {{register.last_name(max=50,class='form-control form-control-lg pl-3 pr-3',placeholder='Last Name')}}
+                    {% for e in register.last_name.errors %}
+                        <span style="color:red">{{e}}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class='row mb-3'> 
+                <div class='col-sm-6'>
+                    {{register.password.label}}
+                    {{register.password(class='form-control form-control-lg pl-3 pr-3',placeholder="Enter Password")}}
+                    {% for e in register.password.errors %}
+                        <span style="color:red">{{e}}</span>
+                    {% endfor %}
+                </div>
+                <div class='col-sm-6'>
+                    {{register.password2.label}}
+                    {{register.password2(class='form-control form-control-lg pl-3 pr-3',placeholder='Re-enter Password')}}
+                    {% for e in register.password2.errors %}
+                        <span style="color:red">{{e}}</span>
+                    {% endfor %}
+                </div> 
+            </div>
+
+            {{register.submit(class='btn btn-outline-success')}}
+    </form>
+</div>
+</div>
+<script>
+    $(".2").addClass('active')
+
+</script>
+{% endblock body %}

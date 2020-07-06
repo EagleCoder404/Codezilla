@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='sidebar col-sm-3'>
+        {% for pearl in pearls %}
+          <div class='container bg-dark rounded-sm mb-3 p-3'>
+            <a href="{{url_for('main',id=pearl.id)}}" class='text-capitalize text-white' >{{pearl.title}}</a>
+          </div>
+        {% endfor %}
+    </div>
+    <div class='video-bar col-sm-9 mw-75'>
+      <div class="embed-responsive embed-responsive-16by9 ">
+        <iframe class="embed-responsive-item" src="{{cur.video}}" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
